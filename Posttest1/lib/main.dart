@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profilePage.dart';
 
 void main() {
   // 1. Ubah MyApp() menjadi AplikasiKeuangan() agar sesuai dengan class di bawahnya
@@ -166,17 +167,29 @@ class HomePage extends StatelessWidget {
         ),
       ),
       
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
+      
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.white,
+        selectedIndex: 0, // Aktif di indeks 0 (Beranda)
+        onDestinationSelected: (index) {
+          // Logika untuk pindah ke halaman Profil
+          if (index == 2) { 
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfilePage()),
+            );
+          }
+        },
+        destinations: const [
+          NavigationDestination(
             icon: Icon(Icons.home),
             label: "Beranda",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(Icons.analytics),
             label: "Statistik",
           ),
-          BottomNavigationBarItem(
+          NavigationDestination(
             icon: Icon(Icons.person),
             label: "Profil",
           ),
